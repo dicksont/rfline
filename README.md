@@ -10,7 +10,7 @@ RFLine is simple file line reader for Node.js.
 var reader = require('rfline').reader;
 var lineCount = 0;
 
-reader('sonnet18.txt', { 'saveState' : false })
+reader('sonnet18.txt')
   .line(function() { lineCount++ })
   .read(function() { console.log(lineCount) });
   
