@@ -1,0 +1,29 @@
+{
+  "name": "rfline",
+  "main": "rfline.js",
+  "version": "0.0.0",
+  "authors": [
+    "Dickson Tam <dicksont650@gmail.com>"
+  ],
+  "description": "File line reader",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "file",
+    "line",
+    "reader",
+    "read",
+    "fluent"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/dicksont/rfline/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+	"spec"
+  ]
+}

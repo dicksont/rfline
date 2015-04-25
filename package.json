@@ -1,0 +1,29 @@
+{
+  "name": "rfline",
+  "version": "0.0.0",
+  "description": "File line reader",
+  "main": "rfline.js",
+  "scripts": {
+    "test": "mocha spec/rfline_spec.js"
+  },
+  "devDependencies": {
+    "extend": "~2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dicksont/rfline.git"
+  },
+  "keywords": [
+    "file",
+    "line",
+    "reader",
+    "read",
+    "fluent"
+  ],
+  "bugs": {
+    "url": "https://github.com/dicksont/rfline/issues"
+  },
+  "homepage": "https://github.com/dicksont/rfline",
+  "author": "Dickson Tam <dicksont650@gmail.com>",
+  "license": "MIT"
+}
