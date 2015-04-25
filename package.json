@@ -1,13 +1,15 @@
 {
   "name": "rfline",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "File line reader",
   "main": "rfline.js",
   "scripts": {
     "test": "mocha spec/rfline_spec.js"
   },
   "devDependencies": {
-    "extend": "~2.0.0"
+    "extend": "~2.0.0",
+    "gulp": "~3.8.11",
+    "gulp-bump": "~0.3.0"
   },
   "repository": {
     "type": "git",

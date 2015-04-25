@@ -1,7 +1,7 @@
 {
   "name": "rfline",
   "main": "rfline.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
     "Dickson Tam <dicksont650@gmail.com>"
   ],
@@ -24,6 +24,6 @@
     "bower_components",
     "test",
     "tests",
-	"spec"
+    "spec"
   ]
 }
