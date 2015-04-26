@@ -1,4 +1,4 @@
-# RFLine API
+# API Usage
 
 ## .reader(filepath)
 Pass in the filepath to build a new reader. 
