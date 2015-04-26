@@ -5,7 +5,7 @@
 RFLine is simple file line reader for Node.js.
 
 
-Here's an example to count the number of lines in a file:
+### Line count example
 
 ```javascript
 
@@ -17,3 +17,5 @@ reader('sonnet18.txt')
   .finish(function() { console.log(lineCount) });
 
 ```
+
+
