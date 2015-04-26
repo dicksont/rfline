@@ -6,7 +6,8 @@ RFLine is simple file line reader for Node.js.
 
 [License](LICENSE) | [API Usage](API.md) 
 
-## Counting lines
+# Scenarios
+## A. Counting lines
 
 ### Example 1 
 
@@ -32,7 +33,7 @@ reader('sonnet18.txt')
 
 ```
 
-## Outputting Lines
+## B. Outputting Lines
 
 ### Example 1
 
