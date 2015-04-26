@@ -82,8 +82,6 @@ var libai = {
             assert.equal(this.lineCount, fixture.lineCount);
             done();
           });
-
-
       });
     });
 
@@ -115,6 +113,22 @@ var libai = {
       });
     });
 
+    describe('opts.capOnFinish', function() {
+      var recordedLines = [];
+
+      it('should read ' + (2 * fixture.lineCount) + ' lines', function(done) {
+        reader(fixture.path, { 'capOnFinish' : false })
+          .finish(function() {
+            assert.equal(this.lineCount, fixture.lineCount);
+            this.lineCount = this.lineCount * 2;
+          })
+          .finish(function() {
+            assert.equal(this.lineCount, 2 * fixture.lineCount);
+            done();
+          })
+          .cap();
+      });
+    });
 
   })
 });

@@ -48,10 +48,11 @@ function RFLine(fpath, opts) {
   var cb = this.cb = {};
 
   this.opts = extend({
-    'saveState' : true
+    'saveState' : true,
+    'capOnFinish' : true
   }, opts);
 
-  ['line', 'finish', 'error'].map(function(event) { cb[event] = [] });
+  ['line', 'finish', 'error', 'cap'].map(function(event) { cb[event] = [] });
 
   this.on('line', function(line) {
     if (this.opts.saveState) {
@@ -66,7 +67,7 @@ function RFLine(fpath, opts) {
   this.stream = fs.createReadStream(fpath, {encoding: 'utf8'});
 }
 
-RFLine.prototype.finish = function(cbFinish) {
+RFLine.prototype.cap = function() {
 
   var reader = this;
   var line = "";
@@ -75,17 +76,12 @@ RFLine.prototype.finish = function(cbFinish) {
   if (reader.hasOwnProperty('lineCount'))
     return this;
 
-
-  if (typeof(cbFinish) == 'undefined')
-    console.warn('Callback function missing from read invocation');
-
   if (this.opts.saveState) {
     reader.lineCount = 0;
     reader.lines = [];
   }
 
 
-  reader.on('finish', cbFinish);
 
   function cbData(sfrag) {
     if (!~sfrag.indexOf("\n")) {
@@ -121,12 +117,21 @@ RFLine.prototype.line = function(cb) {
   return this;
 }
 
+RFLine.prototype.finish = function(cb) {
+  this.on('finish', cb);
+  if (this.opts.capOnFinish) this.cap();
+  return this;
+}
+
 RFLine.prototype.error = function(cb) {
   this.on('error', cb);
   return this;
 }
 
 RFLine.prototype.on = function(event, cb) {
+
+  if (typeof(cb) == 'undefined') return;
+
   this.cb[event].push(cb.bind(this));
   return this;
 }
