@@ -66,7 +66,7 @@ function RFLine(fpath, opts) {
   this.stream = fs.createReadStream(fpath, {encoding: 'utf8'});
 }
 
-RFLine.prototype.read = function(cbFinish) {
+RFLine.prototype.finish = function(cbFinish) {
 
   var reader = this;
   var line = "";

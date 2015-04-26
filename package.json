@@ -1,6 +1,6 @@
 {
   "name": "rfline",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "File line reader for Node.js",
   "main": "rfline.js",
   "scripts": {

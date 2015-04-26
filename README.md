@@ -12,6 +12,6 @@ var lineCount = 0;
 
 reader('sonnet18.txt')
   .line(function() { lineCount++ })
-  .read(function() { console.log(lineCount) });
-  
+  .finish(function() { console.log(lineCount) });
+
 ```

@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  *
  */
- 
+
 var assert = require('assert');
 var reader = require('../rfline.js').reader;
 var path = require('path');
@@ -59,7 +59,7 @@ var libai = {
     describe('.read', function(){
       it('should save state by default', function(done) {
         reader(fixture.path)
-          .read(function() {
+          .finish(function() {
             assert.notEqual(typeof(this.lines), 'undefined');
             assert.notEqual(typeof(this.lineCount), 'undefined');
             done();
@@ -67,7 +67,7 @@ var libai = {
       });
       it('should not save any state when stateless', function(done) {
         reader(fixture.path, { 'saveState' : false })
-          .read(function() {
+          .finish(function() {
             assert.equal(typeof(this.lines), 'undefined');
             assert.equal(typeof(this.lineCount), 'undefined');
             done();
@@ -78,7 +78,7 @@ var libai = {
     describe('.lineCount', function(){
       it('should count ' + fixture.lineCount + ' lines', function(done) {
         reader(fixture.path)
-          .read(function() {
+          .finish(function() {
             assert.equal(this.lineCount, fixture.lineCount);
             done();
           });
@@ -95,7 +95,7 @@ var libai = {
           .line(function(line) {
             recordedLines.push(line);
           })
-          .read(function() {
+          .finish(function() {
             assert.equal(this.lineCount, recordedLines.length);
             for (var i=0; i < this.lineCount; i++) {
               assert.equal(this.lines[i], recordedLines[i]);
@@ -108,7 +108,7 @@ var libai = {
         var lineCount = 0;
         reader(fixture.path, { 'saveState' : false })
           .line(function() { lineCount++ })
-          .read(function() {
+          .finish(function() {
             assert.equal(lineCount, fixture.lineCount);
             done();
           });
