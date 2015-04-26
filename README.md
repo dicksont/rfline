@@ -23,7 +23,6 @@ reader('sonnet18.txt')
 ```javascript
 
 var reader = require('rfline').reader;
-var lineCount = 0;
 
 reader('sonnet18.txt')
   .line(function(line) { console.log(line) })
