@@ -18,4 +18,15 @@ reader('sonnet18.txt')
 
 ```
 
+### Line logging example
 
+```javascript
+
+var reader = require('rfline').reader;
+var lineCount = 0;
+
+reader('sonnet18.txt')
+  .line(function(line) { console.log(line) })
+  .finish();
+
+```
