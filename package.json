@@ -1,16 +1,15 @@
 {
   "name": "rfline",
-  "version": "0.0.1",
-  "description": "File line reader",
+  "version": "0.0.2",
+  "description": "File line reader for Node.js",
   "main": "rfline.js",
   "scripts": {
     "test": "mocha spec/rfline_spec.js"
   },
   "devDependencies": {
-    "extend": "~2.0.0",
     "gulp": "~3.8.11",
     "gulp-bump": "~0.3.0",
-    "mocha" : "~2.2.4"
+    "mocha": "~2.2.4"
   },
   "repository": {
     "type": "git",
@@ -20,8 +19,7 @@
     "file",
     "line",
     "reader",
-    "read",
-    "fluent"
+    "read"
   ],
   "bugs": {
     "url": "https://github.com/dicksont/rfline/issues"

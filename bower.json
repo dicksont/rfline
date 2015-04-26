@@ -1,20 +1,23 @@
 {
   "name": "rfline",
   "main": "rfline.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "Dickson Tam <dicksont650@gmail.com>"
   ],
-  "description": "File line reader",
+  "description": "File line reader for Node.js",
   "moduleType": [
     "node"
   ],
+  "devDependencies": {
+    "gulp": "~3.8.11",
+    "mocha": "~2.2.4"
+  },
   "keywords": [
     "file",
     "line",
     "reader",
-    "read",
-    "fluent"
+    "read"
   ],
   "license": "MIT",
   "homepage": "http://github.com/dicksont/rfline/",
