@@ -31,7 +31,7 @@ reader('sonnet18.txt')
 
 ```
 
-## Logging Lines
+## Outputting Lines
 
 ### Example 1
 
