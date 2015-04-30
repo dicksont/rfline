@@ -4,8 +4,12 @@
 
 RFLine is simple file line reader for Node.js.
 
+[License](LICENSE) | [API Usage](API.md) | [Sample Apps](/dicksont/rfline-examples) 
 
-### Line count example
+## Scenarios
+### A. Counting lines
+
+#### - Example 1 -
 
 ```javascript
 
@@ -18,7 +22,20 @@ reader('sonnet18.txt')
 
 ```
 
-### Line logging example
+#### - Example 2 -
+
+```javascript
+
+var reader = require('rfline').reader;
+
+reader('sonnet18.txt')
+  .finish(function() { console.log(this.lineCount) });
+
+```
+
+### B. Outputting Lines
+
+#### - Example 1 -
 
 ```javascript
 
@@ -27,5 +44,16 @@ var reader = require('rfline').reader;
 reader('sonnet18.txt')
   .line(function(line) { console.log(line) })
   .finish();
+
+```
+
+#### - Example 2 -
+
+```javascript
+
+var reader = require('rfline').reader;
+
+reader('sonnet18.txt')
+  .finish(function() { this.lines.map(function(line) { console.log(line) }});
 
 ```
