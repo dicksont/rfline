@@ -54,6 +54,6 @@ reader('sonnet18.txt')
 var reader = require('rfline').reader;
 
 reader('sonnet18.txt')
-  .finish(this.lines.map(function(line) { console.log(line) });
+  .finish(function() { this.lines.map(function(line) { console.log(line) }});
 
 ```
