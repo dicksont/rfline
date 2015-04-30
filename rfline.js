@@ -64,7 +64,8 @@ function RFLine(fpath, opts) {
 
   this.on('error', function(err) { throw err; });
 
-  this.stream = fs.createReadStream(fpath, {encoding: 'utf8'});
+  this.fpath = fpath;
+
 }
 
 RFLine.prototype.cap = function() {
@@ -99,7 +100,7 @@ RFLine.prototype.cap = function() {
   }
 
   try {
-    reader.stream
+    fs.createReadStream(reader.fpath, {encoding: 'utf8'})
       .on('data', cbData)
       .on('end', function() {
         if (line.length > 0) reader.trigger('line', line);
@@ -119,7 +120,6 @@ RFLine.prototype.line = function(cb) {
 
 RFLine.prototype.finish = function(cb) {
   this.on('finish', cb);
-  if (this.opts.capOnFinish) this.cap();
   return this;
 }
 
@@ -131,8 +131,9 @@ RFLine.prototype.error = function(cb) {
 RFLine.prototype.on = function(event, cb) {
 
   if (typeof(cb) == 'undefined') return;
-
   this.cb[event].push(cb.bind(this));
+
+  if (event == 'finish' && this.opts.capOnFinish) this.cap();
   return this;
 }
 
