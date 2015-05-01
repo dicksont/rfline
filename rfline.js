@@ -120,6 +120,8 @@ RFLine.prototype.line = function(cb) {
 
 RFLine.prototype.finish = function(cb) {
   this.on('finish', cb);
+
+  if (this.opts.capOnFinish) this.cap();
   return this;
 }
 
@@ -133,7 +135,7 @@ RFLine.prototype.on = function(event, cb) {
   if (typeof(cb) == 'undefined') return;
   this.cb[event].push(cb.bind(this));
 
-  if (event == 'finish' && this.opts.capOnFinish) this.cap();
+
   return this;
 }
 
