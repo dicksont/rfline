@@ -4,7 +4,7 @@
 
 RFLine is simple file line reader for Node.js.
 
-[License](LICENSE) | [API Usage](API.md) | [Sample Apps](/dicksont/rfline-examples) 
+[License](LICENSE) | [API Usage](API.md) | [Sample Apps](//github.com/dicksont/rfline-examples) 
 
 ## Scenarios
 ### A. Counting lines
