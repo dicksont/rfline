@@ -1,6 +1,6 @@
 # RFLine
 
-[![Build Status](https://travis-ci.org/dicksont/rfline.svg?branch=master)](https://travis-ci.org/dicksont/rfline)
+[![Build Status](https://travis-ci.org/dicksont/rfline.svg?branch=master)](https://travis-ci.org/dicksont/rfline) [![npm version](https://badge.fury.io/js/rfline.svg)](http://badge.fury.io/js/rfline)
 
 RFLine is simple file line reader for Node.js.
 
