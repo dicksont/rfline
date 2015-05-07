@@ -6,8 +6,8 @@ RFLine is simple file line reader for Node.js.
 
 [License](LICENSE) | [API Usage](API.md) | [Sample Apps](//github.com/dicksont/rfline-examples)
 
-## Scenarios
-### A. Counting lines
+# Scenarios
+## A. Counting lines
 
 #### - Example 1 -
 
@@ -29,7 +29,7 @@ reader('sonnet18.txt')
   .finish(function() { console.log(this.lineCount) });
 ```
 
-### B. Outputting Lines
+## B. Outputting Lines
 
 #### - Example 1 -
 
@@ -50,7 +50,7 @@ reader('sonnet18.txt')
   .finish(function() { this.lines.map(function(line) { console.log(line) }});
 ```
 
-### C. Error handling
+## C. Error handling
 
 Error handlers can be registered with the .error method. When an error occurs in the read pipeline, the error will be dispatched to these handlers.
 
