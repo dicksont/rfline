@@ -45,16 +45,33 @@ var libai = {
 [sonnet18, libai].map(function(fixture) {
   describe('RFLine [' + fixture.label + "]", function(){
     describe('.reader', function(){
-
-
-      it('should return a new LineReader for valid paths', function() {
-        assert.ok(reader(fixture.path) instanceof reader.class);
-      });
-
       it('should return a new LineReader for valid paths', function() {
         assert.ok(reader(fixture.path) instanceof reader.class);
       });
     })
+
+    describe('.error', function() {
+      it('should NOT execute callback for valid paths', function(done) {
+        reader(fixture.path)
+          .error(function(err) {
+            done(new Error('Error callback called with ' + err.toString()));
+          })
+          .finish(function() {
+            done();
+          });
+      });
+
+      it('should execute callback w/ meaningful error object for invalid paths', function(done) {
+        reader("this_file_does_not_exist.txt")
+          .error(function(err) {
+            assert.ok(err.message && err.message.length > 0);
+            done();
+          })
+          .finish(function() {
+            done(new Error('Error not thrown'));
+          });
+      });
+    });
 
     describe('.read', function(){
       it('should save state by default', function(done) {

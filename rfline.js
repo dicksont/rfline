@@ -62,8 +62,6 @@ function RFLine(fpath, opts) {
 
   });
 
-  this.on('error', function(err) { throw err; });
-
   this.fpath = fpath;
 
 }
@@ -102,6 +100,7 @@ RFLine.prototype.cap = function() {
   try {
     fs.createReadStream(reader.fpath, {encoding: 'utf8'})
       .on('data', cbData)
+      .on('error', function(err) { reader.trigger('error', err) })
       .on('end', function() {
         if (line.length > 0) reader.trigger('line', line);
         reader.trigger('finish');
