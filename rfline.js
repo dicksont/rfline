@@ -149,7 +149,14 @@ RFLine.reader = function(fpath, opts) {
 
 RFLine.slurp = function(fpath, cb) {
   if (cb) {
-    fs.readFile(fpath, { encoding: 'utf8' }, cb);
+    fs.readFile(fpath, { encoding: 'utf8' }, function(err, data) {
+      if (err) {
+        throw new Error('RFLine.slurp: error occurred when reading the contents of ' + fpath);
+      } else {
+        return cb(data);
+      }
+
+    });
   } else {
     return fs.readFileSync(fpath, { encoding: 'utf8' });
   }
