@@ -149,7 +149,7 @@ var libai = {
     });
 
     describe('.slurp', function() {
-      it ('should return the same content as .reader', function(done) {
+      it ('should return the same content as .reader when called', function(done) {
         var scontent = slurp(fixture.path);
         var slines = scontent.split(/\n/);
         reader(fixture.path)
@@ -157,6 +157,17 @@ var libai = {
           .finish(function() {
             done();
           });
+      });
+
+      it ('should return the same content as .reader when called w/ callback', function(done) {
+        slurp(fixture.path, function(scontent) {
+          var slines = scontent.split(/\n/);
+          reader(fixture.path)
+            .line(function(rline) { assert.equal(slines.shift(), rline) ;})
+            .finish(function() {
+              done();
+            });
+        });
       });
     });
 
