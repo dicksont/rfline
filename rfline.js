@@ -147,6 +147,14 @@ RFLine.reader = function(fpath, opts) {
   return new RFLine(fpath, opts);
 };
 
+RFLine.slurp = function(fpath, cb) {
+  if (cb) {
+    fs.readFile(fpath, { encoding: 'utf8' }, cb);
+  } else {
+    return fs.readFileSync(fpath, { encoding: 'utf8' });
+  }
+}
+
 RFLine.reader.class = RFLine;
 
 module.exports = RFLine;

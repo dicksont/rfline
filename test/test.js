@@ -26,12 +26,13 @@
 
 var assert = require('assert');
 var reader = require('../rfline.js').reader;
+var slurp = require('../rfline.js').slurp;
 var path = require('path');
 
 
 var sonnet18 = {
   label: 'Shakespeare - Sonnet 18',
-  path: path.resolve(__dirname, 'sonnet18.txt'),
+  path: path.resolve(__dirname,'sonnet18.txt'),
   lineCount: 16
 };
 
@@ -144,6 +145,18 @@ var libai = {
             done();
           })
           .cap();
+      });
+    });
+
+    describe('.slurp', function() {
+      it ('should return the same content as .reader', function(done) {
+        var scontent = slurp(fixture.path);
+        var slines = scontent.split(/\n/);
+        reader(fixture.path)
+          .line(function(rline) { assert.equal(slines.shift(), rline) ;})
+          .finish(function() {
+            done();
+          });
       });
     });
 
