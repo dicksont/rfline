@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/dicksont/rfline.svg?branch=master)](https://travis-ci.org/dicksont/rfline) [![npm version](https://badge.fury.io/js/rfline.svg)](http://badge.fury.io/js/rfline)
 
-RFLine is a Node.js library. It provides a simple but powerful abstraction for reading files line-by-line or in one fell swoop.
+RFLine is a Node.js library. It provides a simple but powerful abstraction for reading a file line-by-line or getting its content with a single call.
 
 
 
@@ -27,7 +27,7 @@ This two functions will give you access to all the features within the RFLine li
 # Cookbook & Examples
 ## A. Counting lines
 
-RFLine is very versatile. Below are two equally valid ways of returning the number of lines in a file.
+RFLine is very flexible. Below are two equally valid ways of returning the number of lines in a file.
 
 #### - Example 1 -
 
@@ -91,26 +91,26 @@ RFLine exports two functions **reader** and **slurp**.
 
 Use **reader** to process the file line-by-line.
 
-Use **slurp** to retrieve the contents of the file in one fell swoop. **Slurp** is basically just a wrapper around **fs.readFile** and its synchronous cousin, **fs.readFileSync**.
+Use **slurp** to retrieve the contents of the file with a single function call. **Slurp** is basically just a wrapper around **fs.readFile** and its synchronous cousin, **fs.readFileSync**.
 
 ## .slurp(filepath, [callback])
-Pass in the filepath string to build a new reader. *Be aware filepath is evaluated from the context of the interpreter and NOT the calling script.*
+Pass in the filepath string to build a new reader. *Be aware filepath is resolved from the context of the interpreter and NOT the calling script.*
 
-If a callback is passed in, then the operation would be asynchronous. *fs.readFile* would be used, and the callback would be called on the the return. The content of the file would be passed as an argument to the callback.
+If a callback is passed in, then the operation would be asynchronous. *fs.readFile* would be used, and the callback would be called on the return. The content of the file would be passed as an argument to the callback.
 
-Otherwise, *fs.readFileSync* would be used. The operation would be synchronous. And the return value would be the content of the file.
+If no callback is specified, *fs.readFileSync* would be used. The operation would be synchronous. The return value would be the content of the file.
 
 # .reader(filepath, [opts])
-Pass in the filepath string to build a new reader. *Note filepath is evaluated from the context of the interpreter and NOT the calling script.*
+Pass in the filepath string to build a new reader. *Note filepath is resolved from the context of the interpreter and NOT the calling script.*
 
 ## opts
-If you don't like the default options, you can pass in an opts object. This would affect the processing of the file. For example:
+If you don't like the default options, you can pass in an **opts** object. This would affect the processing of the file. For example:
 
 ```javascript
 reader(fixture.path, { 'capOnFinish' : false, 'saveState' : false })
 ```
 
-The opts object that can have the following key value pairs:
+The **opts** object that can have the following key value pairs:
 #### capOnFinish
 *Default: true*
 
@@ -139,14 +139,14 @@ If you want, set additional callbacks to be executed on finish, then you should:
 
 1. set **opts.capOnFinish** to false,
 2. call **.finish** as many times as you need,
-3. and cap the chain with an explicit **.cap** call.
+3. cap the chain with an explicit **.cap** call.
 
 ## .cap()
 End the reader construction chain, and execute. Most times you will be not need to call this explicitly. It will be called
 implicitly for you during **.finish** unless **opts.capOnFinish** is set to false.
 
 
-## License
+# License
 The MIT License (MIT)
 
 Copyright (c) 2015 Dickson Tam
