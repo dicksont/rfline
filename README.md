@@ -1,35 +1,32 @@
 [![Build Status](https://travis-ci.org/dicksont/rfline.svg?branch=master)](https://travis-ci.org/dicksont/rfline) [![npm version](https://badge.fury.io/js/rfline.svg)](http://badge.fury.io/js/rfline)
 
-RFLine is a Node.js library. It provides a simple but powerful abstraction for reading a file line-by-line or getting its content with a single call.
-
+*RFLine* is a Node.js library. It provides a simple but powerful abstraction for file iteration and slurping.
 
 
 # Installation
 ### Node
-You can use npm to install RFLine. Start by typing into your shell the following:
+You can use **npm** to install *RFLine* as follows:
 ```javascript
 npm install rfline
 ```
 
-Then, in your app, you can acquire the RFLine reader function with:
+From the interpreter, you can grab the *RFLine* *reader* function with:
 ```javascript
 var reader = require('rfline').reader;
 ```
 
-and the slurp function with:
+Reader enables you to progress through the file one line at a time. If you just want the contents of the file, you can grab the *slurp* function with:
 
 ```javascript
 var slurp = require('rfline').slurp;
 ```
 
-This two functions will give you access to all the features within the RFLine library.
-
-# Cookbook & Examples
-## A. Counting lines
-
-RFLine is very flexible. Below are two equally valid ways of returning the number of lines in a file.
+# Examples
+## A. Counting lines in Shakespeare's *Sonnet 18*
 
 #### - Example 1 -
+The code below counts the number of lines in a text file. *Sonnet18.txt* contains Shakespeare's *Sonnet 18 : Shall I Compare Thee to a Summer's Day*. Since the number of lines in a sonnet is 16, this code should output 16.
+
 
 ```javascript
 var reader = require('rfline').reader;
@@ -37,23 +34,24 @@ var lineCount = 0;
 
 reader('sonnet18.txt')
   .line(function() { lineCount++ })
-  .finish(function() { console.log(lineCount) });
+  .finish(function() { console.log(lineCount) }); //16
 ```
 
 #### - Example 2 -
+Here is another way to get the number of lines in a Shakespeare's *Sonnet 18*:
 
 ```javascript
 var reader = require('rfline').reader;
 
 reader('sonnet18.txt')
-  .finish(function() { console.log(this.lineCount) });
+  .finish(function() { console.log(this.lineCount) }); //16
 ```
 
 ## B. Outputting Lines
 
-Printing the number of lines can also be done in more than one way:
-
 #### - Example 1 -
+We can also to print out Shakespeare's *Sonnet 18*:
+
 
 ```javascript
 var reader = require('rfline').reader;
@@ -61,20 +59,64 @@ var reader = require('rfline').reader;
 reader('sonnet18.txt')
   .line(function(line) { console.log(line) })
   .finish();
+
+/*
+Shall I compare thee to a summer's day?
+Thou art more lovely and more temperate:
+Rough winds do shake the darling buds of May,
+And summer's lease hath all too short a date:
+
+Sometime too hot the eye of heaven shines,
+And often is his gold complexion dimm'd;
+And every fair from fair sometime declines,
+By chance, or nature's changing course, untrimm'd;
+
+But thy eternal summer shall not fade
+Nor lose possession of that fair thou ow'st;
+Nor shall Death brag thou wander'st in his shade,
+When in eternal lines to time thou grow'st;
+So long as men can breathe or eyes can see,
+So long lives this, and this gives life to thee.
+*/
+
 ```
 
 #### - Example 2 -
+By default, *RFLine* stores the lines of the file in an array. This array can be accessed from finish callback function, under the *lines* field of the *this* object. So we can also print out the *lines* of the file from the callback function, which gets called when *RFLine* has finished reading the file.
+
 
 ```javascript
 var reader = require('rfline').reader;
 
 reader('sonnet18.txt')
   .finish(function() { this.lines.map(function(line) { console.log(line) }});
+
+/*
+Shall I compare thee to a summer's day?
+Thou art more lovely and more temperate:
+Rough winds do shake the darling buds of May,
+And summer's lease hath all too short a date:
+
+Sometime too hot the eye of heaven shines,
+And often is his gold complexion dimm'd;
+And every fair from fair sometime declines,
+By chance, or nature's changing course, untrimm'd;
+
+But thy eternal summer shall not fade
+Nor lose possession of that fair thou ow'st;
+Nor shall Death brag thou wander'st in his shade,
+When in eternal lines to time thou grow'st;
+So long as men can breathe or eyes can see,
+So long lives this, and this gives life to thee.
+*/
+
+
 ```
+
 
 ## C. Error handling
 
-Error handlers can be registered with the .error method. When an error occurs in the read pipeline, the error will be dispatched to these handlers.
+Handling errors can be tricky. To avoid unexpected silent errors, you should register a callback that handles these conditions. Error handlers can be registered with the .error method. When an error occurs in the read pipeline, the error will be dispatched to these functions.
 
 ```javascript
 var reader = require('rfline').reader;
@@ -84,7 +126,10 @@ reader('this_does_not_exist.txt')
   .finish();
 ```
 
-You can try out some sample apps at my [rfline-examples repository](//github.com/dicksont/rfline-examples).
+We have built these examples into our regression test suite, but you can do much, much more. *RFLine* provides a powerful functional abstraction for file iteration.
+
+
+You can try out some sample apps at the **[rfline-examples](//github.com/dicksont/rfline-examples)** repository.
 
 # API Usage
 RFLine exports two functions **reader** and **slurp**.
