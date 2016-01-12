@@ -160,7 +160,8 @@ var libai = {
       });
 
       it ('should return the same content as .reader when called w/ callback', function(done) {
-        slurp(fixture.path, function(scontent) {
+        slurp(fixture.path, function(err, scontent) {
+          assert.equal(err, null);
           var slines = scontent.split(/\n/);
           reader(fixture.path)
             .line(function(rline) { assert.equal(slines.shift(), rline) ;})

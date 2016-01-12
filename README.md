@@ -139,11 +139,47 @@ Use **reader** to process the file line-by-line.
 Use **slurp** to retrieve the contents of the file with a single function call. **Slurp** is basically just a wrapper around **fs.readFile** and its synchronous cousin, **fs.readFileSync**.
 
 ## .slurp(filepath, [callback])
-Pass in the filepath string to build a new reader. *Be aware filepath is resolved from the context of the interpreter and NOT the calling script.*
+RFLine provides two ways to invoke this function. One is synchronous. The other is asynchronous. Both take as the first argument the path to the file. **Not the path to the  file is resolved relative to the location of interpreter and NOT the location of calling script. If you are unsure of what to use as the path to the file, I would recommend using the absolute path until you have worked things out.**
 
-If a callback is passed in, then the operation would be asynchronous. *fs.readFile* would be used, and the callback would be called on the return. The content of the file would be passed as an argument to the callback.
+### Asynchronous invocation
+To call read a file 'asynchronously', just pass in a callback as the second argument. Slurp will then invoke this callback when appropriate. The error if any will the first argument. The content of the file if any will be the second argument.
 
-If no callback is specified, *fs.readFileSync* would be used. The operation would be synchronous. The return value would be the content of the file.
+We will demonstrate how to output */etc/passwd* asynchronously:
+
+```javascript
+var rfline = require('rfline');
+
+rfline.slurp('/etc/passwd', function(err, content) {
+
+  if (err)
+    console.log(err.message);
+
+  if (content)
+    console.log(content);
+
+});
+```
+
+
+### Synchronous invocation
+To read a file 'synchronously', omit the second argument. Slurp will return the content of the file if successful, or throw an error otherwise.
+
+We will demonstrate how to output */etc/passwd*  synchronously:
+
+```javascript
+var rfline = require('rfline');
+
+try {
+
+  var content = rfline.slurp('/etc/passwd');
+  console.log(content);
+
+} catch (err) {
+
+  console.log(err.message);
+
+}
+```
 
 # .reader(filepath, [opts])
 Pass in the filepath string to build a new reader. *Note filepath is resolved from the context of the interpreter and NOT the calling script.*
